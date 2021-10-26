@@ -1,0 +1,46 @@
+<form class="container" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
+    
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" 
+      class="form-control" 
+      id="exampleInputEmail1" 
+      aria-describedby="emailHelp"
+      ngModel
+      name="emailAddress"
+      #emailAddress = "ngModel"
+      required
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" 
+    
+      >
+    </div>
+
+    <div *ngIf="(loginForm.submitted && !emailAddress.valid  ) " style="color:red" class="mt-4 mb-4">
+        email is requerd 
+    </div>
+    
+    <div *ngIf=" (emailAddress.touched && !emailAddress.valid)" style="color:red" class="mt-4 mb-4">
+        email is an vailed
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" 
+      class="form-control" 
+      id="exampleInputPassword1"
+      ngModel
+      name="password"
+      #password = "ngModel"
+      required
+      >
+    </div>
+
+    <div *ngIf="passRequire" style="color:red" class="mt-4 mb-4">
+        password is requerd 
+    </div>
+
+ 
+    <button type="submit" class="btn btn-primary">Submit</button>
+  
+  </form>
+  <button class="btn btn-primary" (click)="reigester()"> you dont have an account </button>
